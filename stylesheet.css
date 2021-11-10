@@ -1,0 +1,59 @@
+  .markdown-body code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;
+  }
+
+  .markdown-body code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(15, 202, 62, 0.05);
+    border-radius: 3px;
+  }
+
+  .markdown-body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  .markdown-body pre {
+    padding: 10px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: rgba(15, 202, 62, 0.05);
+    border-radius: 3px;
+  }
+
+  .markdown-body pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+h1 {
+  padding: 1rem 2rem;
+  border-top: 6px double #000;
+  border-bottom: 6px double #000;
+}
+
+h2 {
+  padding: 0.2rem 2rem;
+  border-left: 4px dotted #000;
+}
+
+.figure {
+  text-align: center;
+}
+
