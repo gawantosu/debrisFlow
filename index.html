@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+<style>
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+  }
+
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./stylesheet.css" type="text/css"/>
+</head>
+<body>
+  <article class="markdown-body">
+
+  <p>基盤研究(B) 溜池に流入する土石流の挙動解明ならびに廃止溜池を活用した治水技術の確立<br>日時：2021-11-19、場所：神戸大学、参加者：澤田（神戸大）、園田（神戸大）、松本（神戸大）、小野（愛媛大）、竹川（産総研）</p>
+
+  <h1>土石流の数値解析に関する報告</h1>
+
+  <h2>1.これまでの内容</h2>
+    <p>数値解析の妥当性確認試験として高橋ら実験（1988、土石流および土砂流扇状地の形成に関する研究）の再現を試みました。</p>
+    <div class="figure">
+      <img src="fig/benchtest.png" alt="hydrogen" width="80%" height="80%">
+      <figcaption>図1 ベンチマーク実験の概要</figcaption>
+    </div>
+    <p>上記実験を再現するため3相（空気・水・土石流？）の数値解析を使用できるようにしました。とりあえず土石流の部分に水銀に関するパラメータを設定しました。室温におけるおおよその動粘性係数は空気で<code>1.5e-5 [m2/s]</code>、水で<code>1.0e-6 [m2/s]</code>水銀で水で<code>1.0e-7 [m2/s]</code>であるため、水銀でドロッとした流れ？を表現できると考えました。しかしながら、結果は以下のとおり2秒後には水銀柱は下流側へと流下しており、土石流の挙動とは全く異なるものでした。</p>
+    <div class="figure"><img src="fig/mercury.png" alt="hydrogen" width="95%" height="95%">
+      <figcaption>図2 水銀のパラメータを用いた数値解析の結果→流下が速い</figcaption>
+    </div>
+    <p>さらに土石流の流動様式を再現するため、非ニュートン流体であるビンガム流体とダイラント流体の性質を反映しました。これはせん断速度と動粘性係数の関係が線形でないことを意味しています。反映したモデルの妥当性を確認するため、クエット流れで数値解析上で出力される動粘性係数と理論値との比較検証を行いました。</p>
+
+    <h2>2.今回実施した内容</h2>
+    <p>上記で確認した非ニュートン流体のモデルを土石流実験に適用しました。非ニュートン流体の動粘性係数を表現するパラメータとして、下記のものを使用しました。各パラメータの意味については下記リンクでまとめています。<a href="https://gawantosu.github.io/NonNewtonianFluid/" target="_blank" rel="noopener">数値解析における非ニュートン流体の適用と検証</a><pre><code>transportModel  HerschelBulkley;
+    rho: 1750  [kg/m3]; //土石流の密度
+    k: 5.0e-07 [m2/s];  //係数1
+    n: 2       [-];     //係数2
+    tau: 0.06  [m2/s2]; //降伏応力を密度で除した値</code></pre></p>
+    <p>下の結果が数値解析の動画となります。まず、水銀の動粘性係数を使用した場合よりも実験に近い結果が得られていそうです。具体的にはベンチマーク実験では、土石流の先端部が10s後には60 cm、20s後には70 cmであり（図1）、数値解析もおおよそ同程度の値を示していることが分かります。一方、土石流の平面方向の拡がり具合はベンチマーク実験とは少し異なる結果のように見えます。おおよそ傾向は再現できているでしょうか？もう少し良いパラメータを検討してみたいと思います。</p>
+    <div class="figure">
+      <video width="90%" height="90%" src="fig/simuResults.mp4" controls muted autoplay playsinline loop> </video>
+      <figcaption>図3 土石流を模擬した非ニュートン流体の数値解析結果</figcaption>
+    </div>
+
+</body>
